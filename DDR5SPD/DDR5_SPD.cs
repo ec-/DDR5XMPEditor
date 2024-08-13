@@ -1711,7 +1711,17 @@ namespace DDR5XMPEditor.DDR5SPD
                 Utilities.Convert16bitUnsignedInteger(ref xmpHeader.checksum[0], ref xmpHeader.checksum[1], value);
             }
         }
-
+        public unsafe ushort ExpoCRC
+        {
+            get
+            {
+                return Utilities.ConvertBytes(rawExpo.checksum[0], rawExpo.checksum[1]);
+            }
+            set
+            {
+                Utilities.Convert16bitUnsignedInteger(ref rawExpo.checksum[0], ref rawExpo.checksum[1], value);
+            }
+        }
         public FormFactorEnum? FormFactor
         {
             get
@@ -1982,12 +1992,43 @@ namespace DDR5XMPEditor.DDR5SPD
 
             return bytes;
         }
+        public byte[] GetEXPOBytes()
+        {
+            byte[] bytes = new byte[EXPOSize];
+
+            // Convert raw SPD to byte array.
+            IntPtr ptr = IntPtr.Zero;
+            try
+            {
+                int expoSize = Marshal.SizeOf<RawEXPO>();
+                ptr = Marshal.AllocHGlobal(expoSize);
+                Marshal.StructureToPtr(rawExpo, ptr, true);
+                Marshal.Copy(ptr, bytes, 0, expoSize);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Failed to save SPD data", MessageBoxButton.OK, MessageBoxImage.Error);
+                return null;
+            }
+            finally
+            {
+                Marshal.FreeHGlobal(ptr);
+            }
+
+            return bytes;
+        }
 
         public void UpdateXMPHeaderCRC()
         {
             // Update XMP Header CRC
             var rawXmpHeaderBytes = GetXMPHeaderBytes();
             XMPHeaderCRC = Utilities.Crc16(rawXmpHeaderBytes.Take(0x3D + 1).ToArray());
+        }
+
+        public void UpdateEXPOCRC() {
+            // Update EXPO CRC
+            var expoBytes = GetEXPOBytes();
+            ExpoCRC = Utilities.Crc16(expoBytes.Take(0x7D + 1).ToArray());
         }
 
         public void UpdateCrc()
@@ -2021,6 +2062,11 @@ namespace DDR5XMPEditor.DDR5SPD
                 {
                     xmp[4].UpdateCrc();
                 }
+            }
+
+            if (expoFound)
+            {
+                UpdateEXPOCRC();
             }
         }
 
@@ -2075,8 +2121,9 @@ namespace DDR5XMPEditor.DDR5SPD
             // EXPO takes XMP profile 3 and user profile 1
             if (expoFound)
             {
-                byte[] expo1Bytes = EXPO1.GetBytes();
-                Array.Copy(expo1Bytes, 0, bytes, EXPO.EXPOOffset, expo1Bytes.Length);
+                rawExpo.profile1 = EXPO1.rawEXPOProfile;
+                byte[] expoBytes = GetEXPOBytes();
+                Array.Copy(expoBytes, 0, bytes, EXPOOffset, expoBytes.Length);
             }
             else
             {
