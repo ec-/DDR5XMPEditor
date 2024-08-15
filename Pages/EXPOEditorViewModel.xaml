@@ -60,6 +60,10 @@
                     <ColumnDefinition Width="1.4*"/>
                     <ColumnDefinition Width="1.5*"/>
                     <ColumnDefinition Width="0.8*"/>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition Width="1.4*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="0.8*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
@@ -79,6 +83,9 @@
                 <Label Grid.Row="0" Grid.Column="1" Content="Value (ps)         " FontWeight="Bold"/>
                 <Label Grid.Row="0" Grid.Column="2" Content="Ticks" FontWeight="Bold"/>
                 <Label Grid.Row="0" Grid.Column="3" Content="" FontWeight="Bold"/>
+                <Label Grid.Row="0" Grid.Column="4" Content="Name" FontWeight="Bold"/>
+                <Label Grid.Row="0" Grid.Column="5" Content="Value (ps)         " FontWeight="Bold"/>
+                <Label Grid.Row="0" Grid.Column="7" Content="Ticks" FontWeight="Bold"/>
 
                 <Label Grid.Row="1" Grid.Column="0" Content="tAA:" ToolTip="Read Command to First Data" FontStyle="Normal"/>
                 <xctk:IntegerUpDown Grid.Row="1" Grid.Column="1" Value="{Binding EXPOProfile.tAA}" Minimum="1" Maximum="65535" FormatString="N0" FontFamily="Consolas" TextAlignment="Right"/>
@@ -122,6 +129,38 @@
                 <Label Grid.Row="5" Grid.Column="7" Content="{Binding EXPOProfile.tFAWTicks, Mode=OneWay}"/>
                 <Label Grid.Row="6" Grid.Column="7" Content="{Binding EXPOProfile.tCCD_L_WTRTicks, Mode=OneWay}"/>
                 <Label Grid.Row="7" Grid.Column="7" Content="{Binding EXPOProfile.tCCD_S_WTRTicks, Mode=OneWay}"/>
+                <Label Grid.Row="8" Grid.Column="7" Content="{Binding EXPOProfile.tRTPTicks, Mode=OneWay}"/>
+
+                <Label Grid.Row="1" Grid.Column="4" Content="tRRD__L:" ToolTip="Activate to Activate Command Delay for Same Bank Group"/>
+                <xctk:IntegerUpDown Grid.Row="1" Grid.Column="5" Value="{Binding EXPOProfile.tRRD_L}" Minimum="1" Maximum="65535" FormatString="N0" FontFamily="Consolas" TextAlignment="Right"/>
+                <Label Grid.Row="1" Grid.Column="7" Content="{Binding EXPOProfile.tRRD_LTicks, Mode=OneWay}"/>
+
+                <Label Grid.Row="2" Grid.Column="4" Content="tCCD__L:" ToolTip="Read to Read Command Delay for Same Bank Group"/>
+                <xctk:IntegerUpDown Grid.Row="2" Grid.Column="5" Value="{Binding EXPOProfile.tCCD_L}" Minimum="1" Maximum="65535" FormatString="N0" FontFamily="Consolas" TextAlignment="Right"/>
+                <Label Grid.Row="2" Grid.Column="7" Content="{Binding EXPOProfile.tCCD_LTicks, Mode=OneWay}"/>
+
+                <Label Grid.Row="3" Grid.Column="4" Content="tCCD__L__WR:" ToolTip="Write to Write Command Delay for Same Bank Group"/>
+                <xctk:IntegerUpDown Grid.Row="3" Grid.Column="5" Value="{Binding EXPOProfile.tCCD_L_WR}" Minimum="1" Maximum="65535" FormatString="N0" FontFamily="Consolas" TextAlignment="Right"/>
+                <Label Grid.Row="3" Grid.Column="7" Content="{Binding EXPOProfile.tCCD_L_WRTicks, Mode=OneWay}"/>
+
+                <Label Grid.Row="4" Grid.Column="4" Content="tCCD__L__WR2:" ToolTip="Write to Write Command Delay for Same Bank Group, Second Write not RMW"/>
+                <xctk:IntegerUpDown Grid.Row="4" Grid.Column="5" Value="{Binding EXPOProfile.tCCD_L_WR2}" Minimum="1" Maximum="65535" FormatString="N0" FontFamily="Consolas" TextAlignment="Right"/>
+                <Label Grid.Row="4" Grid.Column="7" Content="{Binding EXPOProfile.tCCD_L_WR2Ticks, Mode=OneWay}"/>
+
+                <Label Grid.Row="5" Grid.Column="4" Content="tFAW:" ToolTip="Four Activate Window"/>
+                <xctk:IntegerUpDown Grid.Row="5" Grid.Column="5" Value="{Binding EXPOProfile.tFAW}" Minimum="1" Maximum="65535" FormatString="N0" FontFamily="Consolas" TextAlignment="Right"/>
+                <Label Grid.Row="5" Grid.Column="7" Content="{Binding EXPOProfile.tFAWTicks, Mode=OneWay}"/>
+
+                <Label Grid.Row="6" Grid.Column="4" Content="tCCD__L__WTR:" ToolTip="Write to Read Command Delay for Same Bank Group"/>
+                <xctk:IntegerUpDown Grid.Row="6" Grid.Column="5" Value="{Binding EXPOProfile.tCCD_L_WTR}" Minimum="1" Maximum="65535" FormatString="N0" FontFamily="Consolas" TextAlignment="Right"/>
+                <Label Grid.Row="6" Grid.Column="7" Content="{Binding EXPOProfile.tCCD_L_WTRTicks, Mode=OneWay}"/>
+
+                <Label Grid.Row="7" Grid.Column="4" Content="tCCD__S__WTR:" ToolTip="Write to Read Command Delay for Different Bank Group"/>
+                <xctk:IntegerUpDown Grid.Row="7" Grid.Column="5" Value="{Binding EXPOProfile.tCCD_S_WTR}" Minimum="1" Maximum="65535" FormatString="N0" FontFamily="Consolas" TextAlignment="Right"/>
+                <Label Grid.Row="7" Grid.Column="7" Content="{Binding EXPOProfile.tCCD_S_WTRTicks, Mode=OneWay}"/>
+
+                <Label Grid.Row="8" Grid.Column="4" Content="tRTP:" ToolTip="Read to Precharge Command Delay"/>
+                <xctk:IntegerUpDown Grid.Row="8" Grid.Column="5" Value="{Binding EXPOProfile.tRTP}" Minimum="1" Maximum="65535" FormatString="N0" FontFamily="Consolas" TextAlignment="Right"/>
                 <Label Grid.Row="8" Grid.Column="7" Content="{Binding EXPOProfile.tRTPTicks, Mode=OneWay}"/>
             </Grid>
         </GroupBox>
