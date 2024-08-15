@@ -1,5 +1,6 @@
 ﻿using Stylet;
 using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows;
 
@@ -43,6 +44,14 @@ namespace DDR5XMPEditor.DDR5SPD
             public fixed byte tRFC1[2];
             public fixed byte tRFC2[2];
             public fixed byte tRFC[2];
+            public fixed byte tRRD_L[2];
+            public fixed byte tCCD_L[2];
+            public fixed byte tCCD_L_WR[2];
+            public fixed byte tCCD_L_WR2[2];
+            public fixed byte tFAW[2];
+            public fixed byte tCCD_L_WTR[2];
+            public fixed byte tCCD_S_WTR[2];
+            public fixed byte tRTP[2];
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
@@ -50,9 +59,8 @@ namespace DDR5XMPEditor.DDR5SPD
         {
             public RawEXPOHeader header;
             public RawEXPOProfile profile1;
-
-            // TODO: Figure out second profile + voltages
-            public fixed byte filler[0x5C];
+            public RawEXPOProfile profile2;
+            public fixed byte filler[0x24];
 
             // Byte 0x7E-0x7F
             public fixed byte checksum[2];
@@ -324,6 +332,158 @@ namespace DDR5XMPEditor.DDR5SPD
             };
             handle_expo.Free();
             return expo;
+        }
+        public unsafe ushort tRRD_L
+        {
+            get
+            {
+                return Utilities.ConvertBytes(rawEXPOProfile.tRRD_L[0], rawEXPOProfile.tRRD_L[1]);
+            }
+
+            set
+            {
+                Utilities.Convert16bitUnsignedInteger(ref rawEXPOProfile.tRRD_L[0], ref rawEXPOProfile.tRRD_L[1], value);
+            }
+        }
+        public unsafe ushort tRRD_LTicks
+        {
+            get
+            {
+                return (ushort)Utilities.TimeToTicksDDR5(tRRD_L, MinCycleTime);
+            }
+        }
+        public unsafe ushort tCCD_L
+        {
+            get
+            {
+                return Utilities.ConvertBytes(rawEXPOProfile.tCCD_L[0], rawEXPOProfile.tCCD_L[1]);
+            }
+
+            set
+            {
+                Utilities.Convert16bitUnsignedInteger(ref rawEXPOProfile.tCCD_L[0], ref rawEXPOProfile.tCCD_L[1], value);
+            }
+        }
+        public unsafe ushort tCCD_LTicks
+        {
+            get
+            {
+                return (ushort)Utilities.TimeToTicksDDR5(tCCD_L, MinCycleTime);
+            }
+        }
+        public unsafe ushort tCCD_L_WR
+        {
+            get
+            {
+                return Utilities.ConvertBytes(rawEXPOProfile.tCCD_L_WR[0], rawEXPOProfile.tCCD_L_WR[1]);
+            }
+
+            set
+            {
+                Utilities.Convert16bitUnsignedInteger(ref rawEXPOProfile.tCCD_L_WR[0], ref rawEXPOProfile.tCCD_L_WR[1], value);
+            }
+        }
+        public unsafe ushort tCCD_L_WRTicks
+        {
+            get
+            {
+                return (ushort)Utilities.TimeToTicksDDR5(tCCD_L_WR, MinCycleTime);
+            }
+        }
+        public unsafe ushort tCCD_L_WR2
+        {
+            get
+            {
+                return Utilities.ConvertBytes(rawEXPOProfile.tCCD_L_WR2[0], rawEXPOProfile.tCCD_L_WR2[1]);
+            }
+
+            set
+            {
+                Utilities.Convert16bitUnsignedInteger(ref rawEXPOProfile.tCCD_L_WR2[0], ref rawEXPOProfile.tCCD_L_WR2[1], value);
+            }
+        }
+        public unsafe ushort tCCD_L_WR2Ticks
+        {
+            get
+            {
+                return (ushort)Utilities.TimeToTicksDDR5(tCCD_L_WR2, MinCycleTime);
+            }
+        }
+        public unsafe ushort tFAW
+        {
+            get
+            {
+                return Utilities.ConvertBytes(rawEXPOProfile.tFAW[0], rawEXPOProfile.tFAW[1]);
+            }
+
+            set
+            {
+                Utilities.Convert16bitUnsignedInteger(ref rawEXPOProfile.tFAW[0], ref rawEXPOProfile.tFAW[1], value);
+            }
+        }
+        public unsafe ushort tFAWTicks
+        {
+            get
+            {
+                return (ushort)Utilities.TimeToTicksDDR5(tFAW, MinCycleTime);
+            }
+        }
+        public unsafe ushort tCCD_L_WTR
+        {
+            get
+            {
+                return Utilities.ConvertBytes(rawEXPOProfile.tCCD_L_WTR[0], rawEXPOProfile.tCCD_L_WTR[1]);
+            }
+
+            set
+            {
+                Utilities.Convert16bitUnsignedInteger(ref rawEXPOProfile.tCCD_L_WTR[0], ref rawEXPOProfile.tCCD_L_WTR[1], value);
+            }
+        }
+        public unsafe ushort tCCD_L_WTRTicks
+        {
+            get
+            {
+                return (ushort)Utilities.TimeToTicksDDR5(tCCD_L_WTR, MinCycleTime);
+            }
+        }
+        public unsafe ushort tCCD_S_WTR
+        {
+            get
+            {
+                return Utilities.ConvertBytes(rawEXPOProfile.tCCD_S_WTR[0], rawEXPOProfile.tCCD_S_WTR[1]);
+            }
+
+            set
+            {
+                Utilities.Convert16bitUnsignedInteger(ref rawEXPOProfile.tCCD_S_WTR[0], ref rawEXPOProfile.tCCD_S_WTR[1], value);
+            }
+        }
+        public unsafe ushort tCCD_S_WTRTicks
+        {
+            get
+            {
+                return (ushort)Utilities.TimeToTicksDDR5(tCCD_S_WTR, MinCycleTime);
+            }
+        }
+        public unsafe ushort tRTP
+        {
+            get
+            {
+                return Utilities.ConvertBytes(rawEXPOProfile.tRTP[0], rawEXPOProfile.tRTP[1]);
+            }
+
+            set
+            {
+                Utilities.Convert16bitUnsignedInteger(ref rawEXPOProfile.tRTP[0], ref rawEXPOProfile.tRTP[1], value);
+            }
+        }
+        public unsafe ushort tRTPTicks
+        {
+            get
+            {
+                return (ushort)Utilities.TimeToTicksDDR5(tRTP, MinCycleTime);
+            }
         }
     }
 }

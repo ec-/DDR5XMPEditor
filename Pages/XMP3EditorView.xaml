@@ -21,7 +21,7 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Row="0" Grid.Column="0" Content="Profile name:"/>
-                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ProfileName}" IsEnabled="{Binding IsNameEnabled}" MaxLength="15"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ProfileName}" IsEnabled="{Binding IsNameEnabled}" MaxLength="16"/>
             </Grid>
         </GroupBox>
 

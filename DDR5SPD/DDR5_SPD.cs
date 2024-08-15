@@ -289,7 +289,7 @@ namespace DDR5XMPEditor.DDR5SPD
         }
 
         // Non user XMP profiles
-        public const ushort maxXmpProfileName = 15;
+        public const ushort maxXmpProfileName = 16;
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
         private unsafe struct XMPHeader_3_0
@@ -300,11 +300,8 @@ namespace DDR5XMPEditor.DDR5SPD
             public byte profileEnabled; // bit 0: profile 1 enabled, bit 1: profile 2 enabled, bit 2: profile 3 enabled
             public fixed byte unknown[10];
             public fixed byte profileName1[maxXmpProfileName];
-            public byte spacer1;
             public fixed byte profileName2[maxXmpProfileName];
-            public byte spacer2;
             public fixed byte profileName3[maxXmpProfileName];
-            public byte spacer3;
             public fixed byte checksum[2];
         };
 
@@ -1886,7 +1883,7 @@ namespace DDR5XMPEditor.DDR5SPD
             {
                 fixed (byte* p = xmpHeader.profileName1)
                 {
-                    return Marshal.PtrToStringAnsi((IntPtr)p);
+                    return Marshal.PtrToStringAnsi((IntPtr)p, maxXmpProfileName);
                 }
             }
             set
@@ -1913,7 +1910,7 @@ namespace DDR5XMPEditor.DDR5SPD
             {
                 fixed (byte* p = xmpHeader.profileName2)
                 {
-                    return Marshal.PtrToStringAnsi((IntPtr)p);
+                    return Marshal.PtrToStringAnsi((IntPtr)p, maxXmpProfileName);
                 }
             }
             set
@@ -1940,7 +1937,7 @@ namespace DDR5XMPEditor.DDR5SPD
             {
                 fixed (byte* p = xmpHeader.profileName3)
                 {
-                    return Marshal.PtrToStringAnsi((IntPtr)p);
+                    return Marshal.PtrToStringAnsi((IntPtr)p, maxXmpProfileName);
                 }
             }
             set
