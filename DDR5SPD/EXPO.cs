@@ -19,9 +19,9 @@ namespace DDR5XMPEditor.DDR5SPD
         public unsafe struct RawEXPOHeader
         {
             public fixed byte magic[4];
-            public byte unk1;
-            public byte unk2;
-            public byte zero_6;
+            public byte revision; // Always 10?
+            public byte enabledProfiles; // Profiles enabled 0011 0011
+            public byte unk3; // Enhanced Timings?
             public byte zero_7;
             public byte zero_8;
             public byte zero_9;
@@ -483,6 +483,16 @@ namespace DDR5XMPEditor.DDR5SPD
             get
             {
                 return (ushort)Utilities.TimeToTicksDDR5(tRTP, MinCycleTime);
+            }
+        }
+        public unsafe bool EnhancedTimings {
+            get
+            {
+                return false;
+            }
+            set
+            { 
+            
             }
         }
     }
