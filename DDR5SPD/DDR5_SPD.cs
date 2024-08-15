@@ -324,7 +324,7 @@ namespace DDR5XMPEditor.DDR5SPD
 
         // EXPO
         public bool expoFound = false;
-        public const int TotalEXPOProfiles = 1; //TOD:O Support more than 1 profile
+        public const int TotalEXPOProfiles = 2;
         private readonly EXPO[] expo = new EXPO[TotalEXPOProfiles];
         private RawEXPO rawExpo;
 
@@ -1964,6 +1964,13 @@ namespace DDR5XMPEditor.DDR5SPD
                 return expoFound;
             }
         }
+        public unsafe bool EXPO2Enabled
+        {
+            get
+            {
+                return expoFound;
+            }
+        }
         public byte[] GetXMPHeaderBytes()
         {
             byte[] bytes = new byte[TotalXMPHeaderSize];
@@ -2245,6 +2252,11 @@ namespace DDR5XMPEditor.DDR5SPD
             get => expo[0];
             set => expo[0] = value;
         }
+        public EXPO EXPO2
+        {
+            get => expo[1];
+            set => expo[1] = value;
+        }
         public bool copyXmpProfile(ushort sourceProfile, ushort targetProfile)
         {
             if (sourceProfile == targetProfile)
@@ -2342,6 +2354,7 @@ namespace DDR5XMPEditor.DDR5SPD
         private void ParseEXPO(byte[] bytes)
         {
             EXPO1 = EXPO.Parse(1, bytes.Skip(EXPO.EXPOHeaderSize).Take(EXPO.EXPOProfileSize).ToArray());
+            EXPO2 = EXPO.Parse(1, bytes.Skip(EXPO.EXPOHeaderSize + EXPO.EXPOProfileSize).Take(EXPO.EXPOProfileSize).ToArray());
         }
     }
 }

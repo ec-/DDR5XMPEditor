@@ -10,7 +10,7 @@ namespace DDR5XMPEditor.DDR5SPD
     {
         public static readonly ushort EXPOOffset = 0x340;
         public static readonly ushort EXPOSize = 0x80;
-        public static readonly ushort EXPOProfileSize = 0x17;
+        public static readonly ushort EXPOProfileSize = 0x28;
         public static readonly ushort EXPOHeaderSize = 0xA;
         public static readonly byte[] EXPOHeaderMagic = { 0x45, 0x58, 0x50, 0x4F };
 

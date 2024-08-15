@@ -16,7 +16,7 @@ namespace DDR5XMPEditor.Pages
 
         private readonly DDR5SPDEditorViewModel ddr5spdVM;
         private readonly XMP3EditorViewModel xmpVm1, xmpVm2, xmpVm3, xmpVm4, xmpVm5;
-        private readonly EXPOEditorViewModel expoVm1;
+        private readonly EXPOEditorViewModel expoVm1, expoVm2;
         private readonly DDR5MiscViewModel miscVm = new DDR5MiscViewModel { DisplayName = "Misc" };
 
         public DDR5MainViewModel(IEventAggregator aggregator)
@@ -29,6 +29,7 @@ namespace DDR5XMPEditor.Pages
             Items.Add(xmpVm4 = new XMP3EditorViewModel(4) { DisplayName = "XMP User 1" });
             Items.Add(xmpVm5 = new XMP3EditorViewModel(5) { DisplayName = "XMP User 2" });
             Items.Add(expoVm1 = new EXPOEditorViewModel(1) { DisplayName = "EXPO 1" });
+            Items.Add(expoVm2 = new EXPOEditorViewModel(1) { DisplayName = "EXPO 2" });
             Items.Add(miscVm);
             ActiveItem = Items[0];
         }
@@ -93,6 +94,12 @@ namespace DDR5XMPEditor.Pages
                 expoVm1.SPD = spd;
                 expoVm1.IsEnabled = DDR5_SPD.expoFound;
                 BindNotifyPropertyChanged(expoVm1);
+
+                DDR5_SPD.Bind(x => x.EXPO2Enabled, (s, args) => expoVm2.IsEnabled = args.NewValue);
+                expoVm2.EXPOProfile = DDR5_SPD.EXPO2;
+                expoVm2.SPD = spd;
+                expoVm2.IsEnabled = DDR5_SPD.expoFound;
+                BindNotifyPropertyChanged(expoVm2);
 
                 FilePath = e.FilePath;
                 FileName = System.IO.Path.GetFileName(FilePath);
