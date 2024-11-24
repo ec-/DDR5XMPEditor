@@ -19,12 +19,19 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
 
                 <Label Grid.Row="0" Grid.Column="0" Content="Min Cycle Time:"/>
                 <xctk:IntegerUpDown Grid.Row="0"  Grid.Column="1" Value="{Binding JedecProfile.MinCycleTime}" Minimum="1" Maximum="65535" FormatString="N0"/>
                 <TextBox Grid.Row="0" Grid.Column="2" IsReadOnly="True" Text="{Binding Frequency, StringFormat={}{0:F3}Mhz, Mode=OneWay}"/>
                 <TextBox Grid.Row="0" Grid.Column="3" IsReadOnly="True" Text="{Binding MegaTransfers, StringFormat={}{0:F3}MT/s, Mode=OneWay}"/>
+
+                <Label Grid.Row="1" Grid.Column="0" Content="Max Cycle Time:"/>
+                <xctk:IntegerUpDown Grid.Row="1"  Grid.Column="1" Value="{Binding JedecProfile.MaxCycleTime}" Minimum="1" Maximum="65535" FormatString="N0"/>
+                <TextBox Grid.Row="1" Grid.Column="2" IsReadOnly="True" Text="{Binding FrequencyMin, StringFormat={}{0:F3}Mhz, Mode=OneWay}"/>
+                <TextBox Grid.Row="1" Grid.Column="3" IsReadOnly="True" Text="{Binding MegaTransfersMin, StringFormat={}{0:F3}MT/s, Mode=OneWay}"/>
+
             </Grid>
         </GroupBox>
         <GroupBox Header="Supported CAS Latencies">

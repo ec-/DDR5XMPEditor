@@ -23,6 +23,19 @@ namespace DDR5XMPEditor.Pages
             }
         }
 
+        public double? FrequencyMin
+        {
+            get
+            {
+                if (JedecProfile == null)
+                {
+                    return null;
+                }
+
+                return Math.Round(1.0 / ((double)JedecProfile.MaxCycleTime / 1000000));
+            }
+        }
+
         public double? MegaTransfers
         {
             get
@@ -33,6 +46,20 @@ namespace DDR5XMPEditor.Pages
                 }
 
                 return Frequency * 2;
+            }
+        }
+
+
+        public double? MegaTransfersMin
+        {
+            get
+            {
+                if (FrequencyMin == null)
+                {
+                    return null;
+                }
+
+                return FrequencyMin * 2;
             }
         }
 
