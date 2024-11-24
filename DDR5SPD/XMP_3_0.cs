@@ -102,26 +102,30 @@ namespace DDR5XMPEditor.DDR5SPD
                 }
             }
         }
+
+        private const ushort IntelDynamicMemoryBoostBit = 1;
+        private const ushort RealTimeMemoryFrequencyOCBit = 0;
+
         public bool IntelDynamicMemoryBoost
         {
             get
             {
-                return (rawXMPProfile.memory_boost_realtime_training & (1 << 0)) != 0;
+                return (rawXMPProfile.memory_boost_realtime_training & (1 << IntelDynamicMemoryBoostBit)) != 0;
             }
             set
             {
-                rawXMPProfile.memory_boost_realtime_training = Utilities.SetBit(rawXMPProfile.memory_boost_realtime_training, 0, value);
+                rawXMPProfile.memory_boost_realtime_training = Utilities.SetBit(rawXMPProfile.memory_boost_realtime_training, IntelDynamicMemoryBoostBit, value);
             }
         }
         public bool RealTimeMemoryFrequencyOC
         {
             get
             {
-                return (rawXMPProfile.memory_boost_realtime_training & (1 << 1)) != 0;
+                return (rawXMPProfile.memory_boost_realtime_training & (1 << RealTimeMemoryFrequencyOCBit)) != 0;
             }
             set
             {
-                rawXMPProfile.memory_boost_realtime_training = Utilities.SetBit(rawXMPProfile.memory_boost_realtime_training, 1, value);
+                rawXMPProfile.memory_boost_realtime_training = Utilities.SetBit(rawXMPProfile.memory_boost_realtime_training, RealTimeMemoryFrequencyOCBit, value);
             }
         }
         public ushort VDD

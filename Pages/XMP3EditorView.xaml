@@ -71,13 +71,13 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Row="0" Grid.Column="0" Content="VDD:"/>
-                <xctk:IntegerUpDown Grid.Row="0" Grid.Column="1" Minimum="110" Maximum="240" Value="{Binding XMPProfile.VDD}"/>
+                <xctk:IntegerUpDown Grid.Row="0" Grid.Column="1" Minimum="110" Maximum="240" Value="{Binding XMPProfile.VDD}" Increment="5"/>
                 <Label Grid.Row="0" Grid.Column="2" Content="VDDQ:"/>
-                <xctk:IntegerUpDown Grid.Row="0" Grid.Column="3" Minimum="110" Maximum="240" Value="{Binding XMPProfile.VDDQ}"/>
+                <xctk:IntegerUpDown Grid.Row="0" Grid.Column="3" Minimum="110" Maximum="240" Value="{Binding XMPProfile.VDDQ}" Increment="5"/>
                 <Label Grid.Row="0" Grid.Column="4" Content="VPP:"/>
-                <xctk:IntegerUpDown Grid.Row="0" Grid.Column="5" Minimum="110" Maximum="240" Value="{Binding XMPProfile.VPP}"/>
+                <xctk:IntegerUpDown Grid.Row="0" Grid.Column="5" Minimum="110" Maximum="240" Value="{Binding XMPProfile.VPP}" Increment="5"/>
                 <Label Grid.Row="0" Grid.Column="6" Content="VMEMCTRL:"/>
-                <xctk:IntegerUpDown Grid.Row="0" Grid.Column="7" Minimum="110" Maximum="240" Value="{Binding XMPProfile.VMEMCTRL}"/>
+                <xctk:IntegerUpDown Grid.Row="0" Grid.Column="7" Minimum="110" Maximum="240" Value="{Binding XMPProfile.VMEMCTRL}" Increment="5"/>
             </Grid>
         </GroupBox>
 
@@ -224,42 +224,42 @@
                 <Label Grid.Row="9" Grid.Column="2" Content="{Binding XMPProfile.tRFCTicks, Mode=OneWay}"/>
 
                 <Label Grid.Row="1" Grid.Column="4" Content="tRRD__L:" ToolTip="Activate to Activate Command Delay for Same Bank Group"/>
-                <xctk:IntegerUpDown Grid.Row="1" Grid.Column="5" Value="{Binding XMPProfile.tRRD_L}" Minimum="1" Maximum="65535" FormatString="N0" FontFamily="Consolas" TextAlignment="Right"/>
+                <xctk:IntegerUpDown Grid.Row="1" Grid.Column="5" Value="{Binding XMPProfile.tRRD_L}" Minimum="0" Maximum="65535" FormatString="N0" FontFamily="Consolas" TextAlignment="Right"/>
                 <xctk:IntegerUpDown Grid.Row="1" Grid.Column="6" Value="{Binding XMPProfile.tRRD_L_lowerLimit}" Minimum="0" Maximum="255" FontFamily="Consolas" TextAlignment="Right"/>
                 <Label Grid.Row="1" Grid.Column="7" Content="{Binding XMPProfile.tRRD_LTicks, Mode=OneWay}"/>
 
                 <Label Grid.Row="2" Grid.Column="4" Content="tCCD__L:" ToolTip="Read to Read Command Delay for Same Bank Group"/>
-                <xctk:IntegerUpDown Grid.Row="2" Grid.Column="5" Value="{Binding XMPProfile.tCCD_L}" Minimum="1" Maximum="65535" FormatString="N0" FontFamily="Consolas" TextAlignment="Right"/>
+                <xctk:IntegerUpDown Grid.Row="2" Grid.Column="5" Value="{Binding XMPProfile.tCCD_L}" Minimum="0" Maximum="65535" FormatString="N0" FontFamily="Consolas" TextAlignment="Right"/>
                 <xctk:IntegerUpDown Grid.Row="2" Grid.Column="6" Value="{Binding XMPProfile.tCCD_L_lowerLimit}" Minimum="0" Maximum="255" FontFamily="Consolas" TextAlignment="Right"/>
                 <Label Grid.Row="2" Grid.Column="7" Content="{Binding XMPProfile.tCCD_LTicks, Mode=OneWay}"/>
 
                 <Label Grid.Row="3" Grid.Column="4" Content="tCCD__L__WR:" ToolTip="Write to Write Command Delay for Same Bank Group"/>
-                <xctk:IntegerUpDown Grid.Row="3" Grid.Column="5" Value="{Binding XMPProfile.tCCD_L_WR}" Minimum="1" Maximum="65535" FormatString="N0" FontFamily="Consolas" TextAlignment="Right"/>
+                <xctk:IntegerUpDown Grid.Row="3" Grid.Column="5" Value="{Binding XMPProfile.tCCD_L_WR}" Minimum="0" Maximum="65535" FormatString="N0" FontFamily="Consolas" TextAlignment="Right"/>
                 <xctk:IntegerUpDown Grid.Row="3" Grid.Column="6" Value="{Binding XMPProfile.tCCD_L_WR_lowerLimit}" Minimum="0" Maximum="255" FontFamily="Consolas" TextAlignment="Right"/>
                 <Label Grid.Row="3" Grid.Column="7" Content="{Binding XMPProfile.tCCD_L_WRTicks, Mode=OneWay}"/>
 
                 <Label Grid.Row="4" Grid.Column="4" Content="tCCD__L__WR2:" ToolTip="Write to Write Command Delay for Same Bank Group, Second Write not RMW"/>
-                <xctk:IntegerUpDown Grid.Row="4" Grid.Column="5" Value="{Binding XMPProfile.tCCD_L_WR2}" Minimum="1" Maximum="65535" FormatString="N0" FontFamily="Consolas" TextAlignment="Right"/>
+                <xctk:IntegerUpDown Grid.Row="4" Grid.Column="5" Value="{Binding XMPProfile.tCCD_L_WR2}" Minimum="0" Maximum="65535" FormatString="N0" FontFamily="Consolas" TextAlignment="Right"/>
                 <xctk:IntegerUpDown Grid.Row="4" Grid.Column="6" Value="{Binding XMPProfile.tCCD_L_WR2_lowerLimit}" Minimum="0" Maximum="255" FontFamily="Consolas" TextAlignment="Right"/>
                 <Label Grid.Row="4" Grid.Column="7" Content="{Binding XMPProfile.tCCD_L_WR2Ticks, Mode=OneWay}"/>
 
                 <Label Grid.Row="5" Grid.Column="4" Content="tFAW:" ToolTip="Four Activate Window"/>
-                <xctk:IntegerUpDown Grid.Row="5" Grid.Column="5" Value="{Binding XMPProfile.tFAW}" Minimum="1" Maximum="65535" FormatString="N0" FontFamily="Consolas" TextAlignment="Right"/>
+                <xctk:IntegerUpDown Grid.Row="5" Grid.Column="5" Value="{Binding XMPProfile.tFAW}" Minimum="0" Maximum="65535" FormatString="N0" FontFamily="Consolas" TextAlignment="Right"/>
                 <xctk:IntegerUpDown Grid.Row="5" Grid.Column="6" Value="{Binding XMPProfile.tFAW_lowerLimit}" Minimum="0" Maximum="255" FontFamily="Consolas" TextAlignment="Right"/>
                 <Label Grid.Row="5" Grid.Column="7" Content="{Binding XMPProfile.tFAWTicks, Mode=OneWay}"/>
 
                 <Label Grid.Row="6" Grid.Column="4" Content="tCCD__L__WTR:" ToolTip="Write to Read Command Delay for Same Bank Group"/>
-                <xctk:IntegerUpDown Grid.Row="6" Grid.Column="5" Value="{Binding XMPProfile.tCCD_L_WTR}" Minimum="1" Maximum="65535" FormatString="N0" FontFamily="Consolas" TextAlignment="Right"/>
+                <xctk:IntegerUpDown Grid.Row="6" Grid.Column="5" Value="{Binding XMPProfile.tCCD_L_WTR}" Minimum="0" Maximum="65535" FormatString="N0" FontFamily="Consolas" TextAlignment="Right"/>
                 <xctk:IntegerUpDown Grid.Row="6" Grid.Column="6" Value="{Binding XMPProfile.tCCD_L_WTR_lowerLimit}" Minimum="0" Maximum="255" FontFamily="Consolas" TextAlignment="Right"/>
                 <Label Grid.Row="6" Grid.Column="7" Content="{Binding XMPProfile.tCCD_L_WTRTicks, Mode=OneWay}"/>
 
                 <Label Grid.Row="7" Grid.Column="4" Content="tCCD__S__WTR:" ToolTip="Write to Read Command Delay for Different Bank Group"/>
-                <xctk:IntegerUpDown Grid.Row="7" Grid.Column="5" Value="{Binding XMPProfile.tCCD_S_WTR}" Minimum="1" Maximum="65535" FormatString="N0" FontFamily="Consolas" TextAlignment="Right"/>
+                <xctk:IntegerUpDown Grid.Row="7" Grid.Column="5" Value="{Binding XMPProfile.tCCD_S_WTR}" Minimum="0" Maximum="65535" FormatString="N0" FontFamily="Consolas" TextAlignment="Right"/>
                 <xctk:IntegerUpDown Grid.Row="7" Grid.Column="6" Value="{Binding XMPProfile.tCCD_S_WTR_lowerLimit}" Minimum="0" Maximum="255" FontFamily="Consolas" TextAlignment="Right"/>
                 <Label Grid.Row="7" Grid.Column="7" Content="{Binding XMPProfile.tCCD_S_WTRTicks, Mode=OneWay}"/>
 
                 <Label Grid.Row="8" Grid.Column="4" Content="tRTP:" ToolTip="Read to Precharge Command Delay"/>
-                <xctk:IntegerUpDown Grid.Row="8" Grid.Column="5" Value="{Binding XMPProfile.tRTP}" Minimum="1" Maximum="65535" FormatString="N0" FontFamily="Consolas" TextAlignment="Right"/>
+                <xctk:IntegerUpDown Grid.Row="8" Grid.Column="5" Value="{Binding XMPProfile.tRTP}" Minimum="0" Maximum="65535" FormatString="N0" FontFamily="Consolas" TextAlignment="Right"/>
                 <xctk:IntegerUpDown Grid.Row="8" Grid.Column="6" Value="{Binding XMPProfile.tRTP_lowerLimit}" Minimum="0" Maximum="255" FontFamily="Consolas" TextAlignment="Right"/>
                 <Label Grid.Row="8" Grid.Column="7" Content="{Binding XMPProfile.tRTPTicks, Mode=OneWay}"/>
             </Grid>
